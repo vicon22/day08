@@ -147,7 +147,7 @@ public class UsersRepositoryJdbcImpl implements UsersRepository {
 
         try {
             connection = dataSource.getConnection();
-            PreparedStatement query = connection.prepareStatement(QUERY_TEMPLATE);
+            PreparedStatement query = connection.prepareStatement(FIND_BY_EMAIL_QUERY_TEMPLATE);
             query.setString(1, email);
             resultSet = query.executeQuery();
         } catch (SQLException throwables) {

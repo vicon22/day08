@@ -40,6 +40,11 @@ public class Main {
         System.out.println(usersRepository.findAll());
 
         System.out.println("==================");
+        System.out.println(usersRepository.findByEmail("11111@email.com"));
+        System.out.println("==================");
+        System.out.println(usersRepository.findById(1L));
+
+        System.out.println("==================");
 
         UsersRepository usersRepository2 = context.getBean(Main.class).usersRepositoryTemplate;
 
@@ -51,6 +56,11 @@ public class Main {
         System.out.println(usersService.signUp("new@mail.ru"));
         System.out.println(usersService.signUp("2@mail.ru"));
         System.out.println(usersRepository2.findAll());
+        System.out.println("==================");
+        System.out.println(usersRepository2.findByEmail("11111@email.com"));
+
+        System.out.println("==================");
+        System.out.println(usersRepository.findById(1L));
 
     }
 }

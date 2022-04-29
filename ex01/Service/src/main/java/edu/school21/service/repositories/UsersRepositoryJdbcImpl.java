@@ -27,9 +27,9 @@ public class UsersRepositoryJdbcImpl implements UsersRepository {
         this.dataSource = dataSource;
         this.tableName = tableName;
         QUERY_TEMPLATE = "SELECT * FROM " + tableName + " WHERE id=?";
-        FIND_BY_EMAIL_QUERY_TEMPLATE = "SELECT * FROM " + tableName + " WHERE email = '?'";
-        SAVE_QUERY = "INSERT INTO " + tableName + " (email) VALUES ('?')";
-        UPDATE_QUERY = "UPDATE " + tableName + " SET email = '?' WHERE id = ?";
+        FIND_BY_EMAIL_QUERY_TEMPLATE = "SELECT * FROM " + tableName + " WHERE email = ?";
+        SAVE_QUERY = "INSERT INTO " + tableName + " (email) VALUES (?)";
+        UPDATE_QUERY = "UPDATE " + tableName + " SET email = ? WHERE id = ?";
         DELETE_QUERY = "DELETE FROM " + tableName + " WHERE id = ?";
         FIND_ALL_QUERY = "SELECT * FROM " + tableName;
     }
@@ -137,7 +137,7 @@ public class UsersRepositoryJdbcImpl implements UsersRepository {
 
         try {
             connection = dataSource.getConnection();
-            PreparedStatement query = connection.prepareStatement(QUERY_TEMPLATE);
+            PreparedStatement query = connection.prepareStatement(FIND_BY_EMAIL_QUERY_TEMPLATE);
             query.setString(1, email);
             resultSet = query.executeQuery();
         } catch (SQLException throwables) {
